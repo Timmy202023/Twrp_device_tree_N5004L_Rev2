@@ -32,13 +32,8 @@ jobs:
             curl https://storage.googleapis.com/git-repo-downloads/repo > ~/bin/repo
             chmod a+x ~/bin/repo
             export PATH=~/bin:$PATH
-          mkdir twrp && cd twrp
           repo init -u https://github.com/minimal-manifest-twrp/platform_manifest_twrp_aosp.git -b twrp-12.1
           repo sync -c --no-tags --no-clone-bundle -j$(nproc) --force-sync
-          
-          mkdir -p device/nuu/n5004l
-          cp -r ../* device/nuu/n5004l/
-          
           source build/envsetup.sh
           lunch omni_n5004l-eng
           mka recoveryimage
